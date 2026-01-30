@@ -1,0 +1,38 @@
+[
+  {
+    "AutomovilID": 1,
+    "ProveedorID": 3,
+    "Marca": "Toyota",
+    "Modelo": "Corolla",
+    "PrecioPorDia": 50,
+    "Año": 2020,
+    "Tipo": "Sedan"
+  },
+  {
+    "AutomovilID": 2,
+    "ProveedorID": 3,
+    "Marca": "Honda",
+    "Modelo": "Civic",
+    "PrecioPorDia": 55,
+    "Año": 2021,
+    "Tipo": "Sedan"
+  },
+  {
+    "AutomovilID": 3,
+    "ProveedorID": 3,
+    "Marca": "Ford",
+    "Modelo": "Explorer",
+    "PrecioPorDia": 70,
+    "Año": 2022,
+    "Tipo": "SUV"
+  },
+  {
+    "AutomovilID": 4,
+    "ProveedorID": 3,
+    "Marca": "Chevrolet",
+    "Modelo": "Spark",
+    "PrecioPorDia": 40,
+    "Año": 2019,
+    "Tipo": "Compacto"
+  }
+]

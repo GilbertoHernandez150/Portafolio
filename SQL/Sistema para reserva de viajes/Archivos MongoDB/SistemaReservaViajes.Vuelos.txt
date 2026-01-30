@@ -1,0 +1,46 @@
+[
+  {
+    "VueloID": 1,
+    "ProveedorID": 1,
+    "Origen": "Boston",
+    "Destino": "Santo Domingo",
+    "FechaSalida": "2023-12-01T08:00:00Z",
+    "FechaLlegada": "2023-12-01T12:00:00Z",
+    "Precio": 350,
+    "NumeroVuelo": "AM402",
+    "Clase": "Economica"
+  },
+  {
+    "VueloID": 2,
+    "ProveedorID": 1,
+    "Origen": "Mexico",
+    "Destino": "Punta Cana",
+    "FechaSalida": "2023-12-05T14:00:00Z",
+    "FechaLlegada": "2023-12-05T18:00:00Z",
+    "Precio": 450,
+    "NumeroVuelo": "AM404",
+    "Clase": "Economica"
+  },
+  {
+    "VueloID": 3,
+    "ProveedorID": 1,
+    "Origen": "Nueva York",
+    "Destino": "Puerto Plata",
+    "FechaSalida": "2024-01-10T07:00:00Z",
+    "FechaLlegada": "2024-01-10T15:00:00Z",
+    "Precio": 600,
+    "NumeroVuelo": "AM406",
+    "Clase": "Economica"
+  },
+  {
+    "VueloID": 4,
+    "ProveedorID": 1,
+    "Origen": "Miami",
+    "Destino": "Barahona",
+    "FechaSalida": "2024-02-20T09:00:00Z",
+    "FechaLlegada": "2024-02-20T12:00:00Z",
+    "Precio": 300,
+    "NumeroVuelo": "AM408",
+    "Clase": "Economica"
+  }
+]

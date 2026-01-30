@@ -1,0 +1,29 @@
+[
+  {
+    "ProveedorID": 1,
+    "Nombre": "Aero Global",
+    "Tipo": "Aereo",
+    "Contacto": "809-111-1111",
+    "Correo": "contacto@aeroglobal.com",
+    "Direccion": "Avenida Principal 100, Santo Domingo, RD",
+    "Pais": "Republica Dominicana"
+  },
+  {
+    "ProveedorID": 2,
+    "Nombre": "Hotel Intercontinental",
+    "Tipo": "Hotel",
+    "Contacto": "809-222-2222",
+    "Correo": "info@intercontinental.com",
+    "Direccion": "Cap Cana, Punta Cana, RD",
+    "Pais": "Republica Dominicana"
+  },
+  {
+    "ProveedorID": 3,
+    "Nombre": "RentalCars",
+    "Tipo": "Automovil",
+    "Contacto": "809-333-3333",
+    "Correo": "info@rentalcars.com",
+    "Direccion": "Calle Central 10, Santo Domingo, RD",
+    "Pais": "Republica Dominicana"
+  }
+]

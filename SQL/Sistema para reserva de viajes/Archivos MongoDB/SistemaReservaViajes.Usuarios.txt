@@ -1,0 +1,48 @@
+[
+  {
+    "UsuarioID": 1,
+    "Nombre": "Josefina Montes",
+    "Correo": "josefinamontes@gmail.com",
+    "Contraseña": "contraseña0",
+    "Telefono": "809-000-0000",
+    "Direccion": "Villa Faro, Santo Domingo, RD",
+    "FechaNacimiento": "1985-06-15T00:00:00Z"
+  },
+  {
+    "UsuarioID": 2,
+    "Nombre": "Juan Perez",
+    "Correo": "juanperez@gmail.com",
+    "Contraseña": "contraseña1",
+    "Telefono": "809-111-1111",
+    "Direccion": "Autopista San Isidro, Santo Domingo, RD",
+    "FechaNacimiento": "1990-02-25T00:00:00Z"
+  },
+  {
+    "UsuarioID": 3,
+    "Nombre": "Maria Lopez",
+    "Correo": "marialopez@gmail.com",
+    "Contraseña": "contraseña2",
+    "Telefono": "809-222-2222",
+    "Direccion": "Calle Las Flores 56, Santiago, RD",
+    "FechaNacimiento": "1988-11-30T00:00:00Z"
+  },
+  {
+    "UsuarioID": 4,
+    "Nombre": "Pedro Garcia",
+    "Correo": "pedrogarcia@gmail.com",
+    "Contraseña": "contraseña3",
+    "Telefono": "809-333-3333",
+    "Direccion": "Calle Del Sol 45, La Romana, RD",
+    "FechaNacimiento": "1982-08-20T00:00:00Z"
+  },
+  {
+    "UsuarioID": 5,
+    "Nombre": "Ana Martinez",
+    "Correo": "anamartinez@gmail.com",
+    "Contraseña": "contraseña4",
+    "Telefono": "809-444-4444",
+    "Direccion": "Avenida Duarte 67, Punta Cana, RD",
+    "FechaNacimiento": "1995-03-10T00:00:00Z"
+  }
+]
+

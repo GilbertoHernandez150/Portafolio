@@ -1,0 +1,30 @@
+[
+  {
+    "PaqueteID": 1,
+    "Nombre": "Paquete Caribeño",
+    "Descripcion": "Disfruta de 7 días en el Caribe con todo incluido",
+    "Precio": 1200,
+    "Incluye": ["Vuelo", "Hotel", "Desayuno", "Transporte"]
+  },
+  {
+    "PaqueteID": 2,
+    "Nombre": "Aventura en Punta Cana",
+    "Descripcion": "Explora las playas de Punta Cana en 10 días",
+    "Precio": 2500,
+    "Incluye": ["Vuelo", "Hotel", "Desayuno", "Tours"]
+  },
+  {
+    "PaqueteID": 3,
+    "Nombre": "Descubre Santo Domingo",
+    "Descripcion": "Visita los puntos históricos de Santo Domingo en 5 días",
+    "Precio": 800,
+    "Incluye": ["Vuelo", "Hotel", "Desayuno", "Guía Turístico"]
+  },
+  {
+    "PaqueteID": 4,
+    "Nombre": "Escapada a La Romana",
+    "Descripcion": "Relájate en los resorts de La Romana en 7 días",
+    "Precio": 1500,
+    "Incluye": ["Vuelo", "Hotel", "Desayuno", "Spa"]
+  }
+]

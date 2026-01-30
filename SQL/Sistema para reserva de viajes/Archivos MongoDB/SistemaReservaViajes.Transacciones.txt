@@ -1,0 +1,34 @@
+[
+  {
+    "TransaccionID": 1,
+    "ReservaID": 1,
+    "FechaTransaccion": "2023-11-01T12:00:00Z",
+    "Monto": 550,
+    "MetodoPago": "Tarjeta de Crédito",
+    "Estado": "Completada"
+  },
+  {
+    "TransaccionID": 2,
+    "ReservaID": 2,
+    "FechaTransaccion": "2023-11-15T10:15:00Z",
+    "Monto": 705,
+    "MetodoPago": "PayPal",
+    "Estado": "Pendiente"
+  },
+  {
+    "TransaccionID": 3,
+    "ReservaID": 3,
+    "FechaTransaccion": "2024-01-10T12:15:00Z",
+    "Monto": 950,
+    "MetodoPago": "Tarjeta de Crédito",
+    "Estado": "Completada"
+  },
+  {
+    "TransaccionID": 4,
+    "ReservaID": 4,
+    "FechaTransaccion": "2024-02-20T12:30:00Z",
+    "Monto": 520,
+    "MetodoPago": "PayPal",
+    "Estado": "Pendiente"
+  }
+]

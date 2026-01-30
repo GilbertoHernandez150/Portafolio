@@ -1,0 +1,38 @@
+[
+  {
+    "HotelID": 1,
+    "ProveedorID": 2,
+    "Nombre": "Hotel Intercontinental",
+    "Ubicacion": "Santo Domingo",
+    "PrecioPorNoche": 150,
+    "Estrellas": 5,
+    "Servicios": ["Wi-Fi", "Piscina", "Gimnasio", "Spa"]
+  },
+  {
+    "HotelID": 2,
+    "ProveedorID": 2,
+    "Nombre": "Hotel Barceló",
+    "Ubicacion": "Punta Cana",
+    "PrecioPorNoche": 200,
+    "Estrellas": 4,
+    "Servicios": ["Wi-Fi", "Piscina", "Restaurante"]
+  },
+  {
+    "HotelID": 3,
+    "ProveedorID": 2,
+    "Nombre": "Casa de Campo",
+    "Ubicacion": "La Romana",
+    "PrecioPorNoche": 250,
+    "Estrellas": 5,
+    "Servicios": ["Wi-Fi", "Campo de Golf", "Spa", "Piscina"]
+  },
+  {
+    "HotelID": 4,
+    "ProveedorID": 2,
+    "Nombre": "Hotel Punta Cana Resort",
+    "Ubicacion": "Punta Cana",
+    "PrecioPorNoche": 180,
+    "Estrellas": 4,
+    "Servicios": ["Wi-Fi", "Piscina", "Playa Privada"]
+  }
+]
