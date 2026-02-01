@@ -1,0 +1,49 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\WebMia\\DiarioVideojuegos\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\DiarioVideojuegos.bundle.scp.css",
+      "PackagePath": "staticwebassets\\DiarioVideojuegos.bundle.scp.css"
+    },
+    {
+      "Id": "C:\\WebMia\\DiarioVideojuegos\\wwwroot\\Images\\Fondo.jpg",
+      "PackagePath": "staticwebassets\\Images\\Fondo.jpg"
+    },
+    {
+      "Id": "C:\\WebMia\\DiarioVideojuegos\\wwwroot\\Images\\Mifoto.jpg",
+      "PackagePath": "staticwebassets\\Images\\Mifoto.jpg"
+    },
+    {
+      "Id": "C:\\WebMia\\DiarioVideojuegos\\wwwroot\\app.css",
+      "PackagePath": "staticwebassets\\app.css"
+    },
+    {
+      "Id": "C:\\WebMia\\DiarioVideojuegos\\wwwroot\\bootstrap\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\bootstrap\\bootstrap.min.css"
+    },
+    {
+      "Id": "C:\\WebMia\\DiarioVideojuegos\\wwwroot\\bootstrap\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\bootstrap\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "C:\\WebMia\\DiarioVideojuegos\\wwwroot\\favicon.png",
+      "PackagePath": "staticwebassets\\favicon.png"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.DiarioVideojuegos.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.DiarioVideojuegos.props",
+      "PackagePath": "build\\DiarioVideojuegos.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.DiarioVideojuegos.props",
+      "PackagePath": "buildMultiTargeting\\DiarioVideojuegos.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.DiarioVideojuegos.props",
+      "PackagePath": "buildTransitive\\DiarioVideojuegos.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
