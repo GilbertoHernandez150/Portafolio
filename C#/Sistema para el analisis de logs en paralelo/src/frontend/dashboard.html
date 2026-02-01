@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard de Análisis Paralelo</title>
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="styles/loading.css">
+
+</head>
+<body>
+    <div class="container" id="dashboard" style="display: none;">
+        <div class="header">
+            <h1>Dashboard de Análisis Paralelo</h1>
+            <p>Resultados del analisis de logs por SSH</p>
+            <p id="ssh-info"></p>
+        </div>
+
+        <div class="status-message status-success">
+            ✅ Análisis Completado — Análisis paralelo completado con éxito.
+        </div>
+
+        <div class="dashboard active">
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-value errors" id="total-errors" ></div>
+                    <div class="metric-label" >Total Errores</div>
+                </div>
+                
+                <div class="metric-card">
+                    <div class="metric-value warnings" id="error-warning"></div>
+                    <div class="metric-label" >Total Warnings</div>
+                </div>
+                
+                <div class="metric-card">
+                    <div class="metric-value infos" id="error-info"></div>
+                    <div class="metric-label" >Total Infos</div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-value speedup" id="speedup"></div>
+                    <div class="metric-label" >Speedup</div>
+                </div>
+            </div>
+
+            <div class="charts-section">
+                <div class="chart-container">
+                    <div class="chart-title">📊 Métricas de Rendimiento</div>
+                    <canvas id="performanceChart"></canvas>
+                </div>
+
+                <div class="chart-container">
+                    <div class="chart-title">⏱ Comparación de Tiempos</div>
+                    <canvas id="timeChart" ></canvas>
+                </div>
+            </div>
+
+            <div class="performance-section">
+                <div class="performance-grid">
+                    <div class="performance-item">
+                        <div class="performance-label">Eficiencia</div>
+                        <div class="performance-value" id="eficiencia"></div>
+                    </div>
+                    <div class="time-item">
+                        <div class="performance-label">Secuencial</div>
+                        <div class="time-value sequential"id="msSecuencial"></div>
+                    </div>
+                    <div class="time-item">
+                        <div class="performance-label">Paralelo</div>
+                        <div class="time-value parallel" id="msParalelo"></div>
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Loading que vamos a mostrar-->
+    
+    <div id="loadingOverlay" class="loading-overlay" aria-live="polite" aria-busy="true" hidden>
+    <div class="loader-wrap">
+        <div class="neon-ring" aria-hidden="true"></div>
+        <span class="loading-center-text">Cargando<br>información...</span>
+    </div>
+    </div>
+    </div>
+    <!-- Chart.js ( para las gráficas) -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>

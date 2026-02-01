@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSH Analysis Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="styles/styles.css">
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>SSH Sentinel</h1>
+            <p>Monitor and analyze SSH connection performance in real-time</p>
+        </div>
+
+        <!-- Bienvenida -->
+        <div class="welcome">
+            <div>
+                <h2 id="greetingTitle">¡Bienvenido!</h2>
+                <p class="welcome-text">
+                    Configura tu conexión SSH y observa métricas en tiempo real. Si es tu primera vez, revisa los tips
+                    de abajo.
+                </p>
+            </div>
+        </div>
+
+        <div class="connection-form">
+            <form id="analysisForm">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="host">Host</label>
+                        <input type="text" id="host" name="host" value="127.0.0.1" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="port">Port</label>
+                        <input type="number" id="port" name="port" value="22" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="port">Processors</label>
+                        <input type="number" id="cores" name="cores" value="20" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="user">User</label>
+                        <input type="text" id="user" name="user" required autocomplete="username" placeholder="Name">
+                    </div>
+                    <div class="form-group password-group">
+                        <label for="password">Password</label>
+                        <div class="input-with-button">
+                            <input type="password" id="password" name="password" placeholder="Password" required
+                                autocomplete="current-password">
+                            <button type="button" class="ghost-btn" id="togglePass"
+                                aria-label="Mostrar u ocultar contraseña">👁</button>
+                        </div>
+                        <small class="hint">Nunca guardamos tu contraseña. Úsala solo en equipos de confianza.</small>
+                    </div>
+
+                </div>
+                <button type="submit" class="analyze-btn" id="analyzeBtn">
+                    Iniciar Análisis
+                </button>
+                <div id="statusMessage" class="status-message" style="display: none;"></div>
+            </form>
+        </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Sección de Ayuda / Tips -->
+    <section class="helper-grid">
+        <article class="helper-card">
+            <h3>Cómo empezar</h3>
+            <ul>
+                <li>1) Verifica el <strong>host</strong> y <strong>puerto</strong> (22 por defecto).</li>
+                <li>2) Escribe tu <strong>usuario</strong> y contraseña.</li>
+                <li>3) Presiona <strong>Iniciar Análisis</strong> o <kbd>Enter</kbd>.</li>
+            </ul>
+        </article>
+
+        <article class="helper-card">
+            <h3>Atajos</h3>
+            <ul>
+                <li><kbd>Tab</kbd> para moverte entre campos.</li>
+                <li><kbd>Enter</kbd> para iniciar análisis.</li>
+                <li>Click en <strong>👁</strong> para ver/ocultar contraseña.</li>
+            </ul>
+        </article>
+    </section>
+
+    <script src="js/index.js"></script>
+
+    <footer class="app-footer">
+        <div>SSH Sentinel • Proyecto Final Paralela</div>
+        <div class="dot ok" id="apiStatusDot" title="Estado API"></div>
+        <div class="footer-right">
+            <a href="#" tabindex="-1">Política de privacidad</a>
+            <span aria-hidden="true">•</span>
+            <a href="#" tabindex="-1">Soporte</a>
+        </div>
+    </footer>
+
+</body>
+
+</html>
