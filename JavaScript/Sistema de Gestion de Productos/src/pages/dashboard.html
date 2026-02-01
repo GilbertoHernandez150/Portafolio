@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Sistema CRUD</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <header class="dashboard-header">
+            <h1>Panel de Control</h1>
+            <div class="user-info">
+                <span id="welcome-message">Bienvenido, Usuario</span>
+                <span id="current-date"></span>
+                <button id="logout-btn">Cerrar Sesión</button>
+            </div>
+        </header>
+
+        <main class="dashboard-main">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3>Total Productos</h3>
+                    <span id="total-products">0</span>
+                </div>
+                <div class="stat-card">
+                    <h3>Último Login</h3>
+                    <span id="last-login">--</span>
+                </div>
+                <div class="stat-card">
+                    <h3>Ventas Simuladas</h3>
+                    <span id="simulated-sales">$0.00</span>
+                </div>
+            </div>
+
+            <div class="dashboard-actions">
+                <a href="index.html" class="btn-primary">Gestionar Productos</a>
+                <button id="clear-data" class="btn-warning">Limpiar Datos</button>
+            </div>
+        </main>
+    </div>
+    <script src="../js/dashboard/dashboard.js"></script>
+</body>
+</html>
