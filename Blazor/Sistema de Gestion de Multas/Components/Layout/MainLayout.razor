@@ -1,0 +1,35 @@
+﻿@inherits LayoutComponentBase
+<div class="main-layout">
+    <!-- Barra de navegación -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+        <a class="navbar-brand text-white" href="inicio"> Programa DIGESETT</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <NavLink class="nav-link text-white" href="agente">Agente</NavLink>
+                </li>
+                 <li class="nav-item">
+                    <NavLink class="nav-link text-white" href="/oficina-central">Oficina Central</NavLink>
+                </li>
+                 <li class="nav-item">
+                    <NavLink class="nav-link text-white" href="/">Salir</NavLink>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Contenido principal -->
+    <div class="container main-content mt-4">
+        @Body
+    </div>
+
+    <!-- Pie de página -->
+    <footer class="footer">
+        <div class="container text-center py-3">
+            <p class="m-0 text-white">&copy; 2024 Aplicación Web para la DIGESETT. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+</div>

@@ -1,0 +1,150 @@
+@page "/oficina-central/reporte-ingresos"
+@using Microsoft.EntityFrameworkCore
+@inject NavigationManager Navigation
+@inject MultasDbContext DbContext
+@layout CentralLayout
+@rendermode InteractiveServer
+
+<div class="report-container">
+    <div class="header">
+        <h1 class="page-title">Reporte de Ingresos</h1>
+        <div class="form-group">
+            <label for="mes">Selecciona un mes:</label>
+            <select id="mes" class="form-control" @bind="selectedMes">
+                @foreach (var mes in meses)
+                {
+                    <option value="@mes.Key">@mes.Value</option>
+                }
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="anio">Selecciona un año:</label>
+            <select id="anio" class="form-control" @bind="selectedAnio">
+                @foreach (var anio in anios)
+                {
+                    <option value="@anio">@anio</option>
+                }
+            </select>
+        </div>
+        <button class="btn btn-primary" @onclick="GenerarReporte">
+            <i class="fas fa-search"></i> Generar Reporte
+        </button>
+    </div>
+
+    @if (ingresosPorTipo == null)
+    {
+        <div class="loading-spinner">
+            <p>Cargando datos...</p>
+        </div>
+    }
+    else if (!ingresosPorTipo.Any())
+    {
+        <div class="no-data">
+            <p>No se encontraron ingresos para el mes y año seleccionados.</p>
+        </div>
+    }
+    else
+    {
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Tipo de Multa</th>
+                        <th>Cantidad de Multas</th>
+                        <th>Total Ingresado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var ingreso in ingresosPorTipo)
+                    {
+                        <tr>
+                            <td>@ingreso.TipoMulta</td>
+                            <td>@ingreso.Cantidad</td>
+                            <td>@ingreso.Total.ToString("C")</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</div>
+
+<style>
+    .report-container {
+        background-color: #f8f9fa;
+        padding: 2rem;
+        border-radius: 10px;
+    }
+
+    .header {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .btn-primary {
+        margin-top: 1rem;
+    }
+
+    .loading-spinner, .no-data {
+        text-align: center;
+        margin-top: 2rem;
+    }
+</style>
+
+@code {
+    private int selectedMes = DateTime.Now.Month;
+    private int selectedAnio = DateTime.Now.Year;
+    private List<KeyValuePair<int, string>> meses = new List<KeyValuePair<int, string>>
+    {
+        new KeyValuePair<int, string>(1, "Enero"),
+        new KeyValuePair<int, string>(2, "Febrero"),
+        new KeyValuePair<int, string>(3, "Marzo"),
+        new KeyValuePair<int, string>(4, "Abril"),
+        new KeyValuePair<int, string>(5, "Mayo"),
+        new KeyValuePair<int, string>(6, "Junio"),
+        new KeyValuePair<int, string>(7, "Julio"),
+        new KeyValuePair<int, string>(8, "Agosto"),
+        new KeyValuePair<int, string>(9, "Septiembre"),
+        new KeyValuePair<int, string>(10, "Octubre"),
+        new KeyValuePair<int, string>(11, "Noviembre"),
+        new KeyValuePair<int, string>(12, "Diciembre")
+    };
+    private List<int> anios = new List<int> { DateTime.Now.Year, DateTime.Now.Year - 1, DateTime.Now.Year - 2 };
+    private List<IngresoPorTipoMulta> ingresosPorTipo;
+
+    private async Task GenerarReporte()
+    {
+        // Filtrar las multas pagadas por el mes y año seleccionados
+        var multasPagadas = await DbContext.Multas
+            .Where(m => m.Estado == "Pagada" && m.FechaRegistro.Month == selectedMes && m.FechaRegistro.Year == selectedAnio)
+            .Include(m => m.Concepto)  // Incluimos el concepto de la multa para agrupar por tipo
+            .ToListAsync();
+
+        // Agrupar por tipo de multa y calcular el total de las multas
+        ingresosPorTipo = multasPagadas
+            .GroupBy(m => m.Concepto.Nombre) // Agrupamos por el nombre del concepto de multa
+            .Select(g => new IngresoPorTipoMulta
+            {
+                TipoMulta = g.Key,
+                Cantidad = g.Count(),
+                Total = (decimal)g.Sum(m => m.Concepto.Monto) // Sumamos los montos de las multas de cada concepto
+            })
+            .ToList();
+    }
+
+
+    public class IngresoPorTipoMulta
+    {
+        public string TipoMulta { get; set; }
+        public int Cantidad { get; set; }
+        public decimal Total { get; set; }
+    }
+}

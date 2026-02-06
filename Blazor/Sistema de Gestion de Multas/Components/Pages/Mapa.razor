@@ -1,0 +1,17 @@
+@page "/agente/mapa-multas"
+@using Microsoft.EntityFrameworkCore
+@inject MultasDbContext DbContext
+@rendermode InteractiveServer
+@layout AgenteLayout
+
+
+<AsgMap Multas="multas" />
+
+@code{
+    private List<Multa> multas = new List<Multa>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        multas = await DbContext.Multas.ToListAsync();
+    }
+}

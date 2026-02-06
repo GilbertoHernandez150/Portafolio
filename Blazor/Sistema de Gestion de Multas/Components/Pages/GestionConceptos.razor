@@ -1,0 +1,135 @@
+@page "/administrativo/gestionar-conceptos"
+@using Microsoft.EntityFrameworkCore
+@inject NavigationManager Navigation
+@inject MultasDbContext DbContext
+@layout AdminLayout
+@rendermode InteractiveServer
+
+<h2>Gestión de Conceptos de Multas</h2>
+
+<div class="card">
+    <div class="card-header bg-primary text-white">
+        <h5>Agregar Nuevo Concepto de Multa</h5>
+    </div>
+
+         @if (!string.IsNullOrEmpty(mensajeExito))
+            {
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>¡Éxito!</strong> @mensajeExito
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            }
+
+    <div class="card-body">
+        <EditForm Model="@nuevoConcepto" OnValidSubmit="@AgregarConcepto">
+            <DataAnnotationsValidator />
+            <div class="mb-3">
+                <label for="nombre" class="form-label">Nombre del Concepto</label>
+                <InputText id="nombre" class="form-control" @bind-Value="nuevoConcepto.Nombre" />
+            </div>
+            <div class="mb-3">
+                <label for="descripcion" class="form-label">Descripción</label>
+                <InputTextArea id="descripcion" class="form-control" @bind-Value="nuevoConcepto.Descripcion" />
+            </div>
+            <div class="mb-3">
+                <label for="Monto" class="form-label">Monto</label>
+                <InputNumber id="Monto" class="form-control" @bind-Value="nuevoConcepto.Monto" />
+            </div>
+            <button type="submit" class="btn btn-success">Agregar</button>
+        </EditForm>
+    </div>
+</div>
+
+<div class="mt-4">
+    <h5>Listado de Conceptos</h5>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Monto</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var concepto in conceptos)
+            {
+                <tr>
+                    <td>@concepto.Id</td>
+                    <td>@concepto.Nombre</td>
+                    <td>@concepto.Descripcion</td>
+                    <td>@concepto.Monto.ToString("C")</td>
+                    <td>
+                        <button class="btn btn-danger btn-sm" @onclick="() => EliminarConcepto(concepto.Id)">Eliminar</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@code {
+    private List<ConceptoMulta> conceptos = new();
+    private ConceptoMulta nuevoConcepto = new();
+    private string mensajeExito;
+
+    protected override async Task OnInitializedAsync()
+    {
+        // Cargar la lista inicial de conceptos
+        await CargarConceptos();
+    }
+
+  private async Task CargarConceptos()
+    {
+        conceptos = await DbContext.ConceptosMultas.ToListAsync();
+    }
+
+  private async Task AgregarConcepto()
+    {
+        try
+        {
+            DbContext.ConceptosMultas.Add(nuevoConcepto);
+            await DbContext.SaveChangesAsync();
+
+            mensajeExito = "El concepto ha sido registrado correctamente.";
+
+            nuevoConcepto = new ConceptoMulta();
+            await CargarConceptos();
+
+            await Task.Delay(5000);
+            mensajeExito = string.Empty;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error al guardar el concepto: {ex.Message}");
+        }
+    }
+
+private async Task EliminarConcepto(int id)
+    {
+        try
+        {
+            // Buscar el concepto por ID
+            var conceptoAEliminar = await DbContext.ConceptosMultas.FindAsync(id);
+
+            if (conceptoAEliminar != null)
+            {
+                // Eliminar el concepto de la base de datos
+                DbContext.ConceptosMultas.Remove(conceptoAEliminar);
+                await DbContext.SaveChangesAsync();
+
+                // Actualizar la lista local de conceptos
+                await CargarConceptos();
+
+                mensajeExito = "El concepto ha sido eliminado correctamente.";
+                await Task.Delay(5000);
+                mensajeExito = string.Empty;
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error al eliminar el concepto: {ex.Message}");
+        }
+    }
+}

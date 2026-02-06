@@ -1,0 +1,58 @@
+/* Estilo general para el layout */
+.main-layout {
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #f4f6f9;
+}
+
+.navbar {
+    background-color: #007bff; /* Color azul para la barra de navegación */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.navbar .navbar-brand {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.navbar-nav .nav-link {
+    font-size: 1.1em;
+    padding: 10px 15px;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #ffdf00; /* Color amarillo al pasar el mouse sobre los links */
+}
+
+.navbar-toggler-icon {
+    background-color: #fff;
+}
+
+.main-content {
+    flex: 1;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.footer {
+    background-color: #343a40;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    font-size: 0.9em;
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+    .navbar-nav .nav-link {
+        font-size: 1em;
+    }
+
+    .main-content {
+        padding: 15px;
+    }
+}

@@ -1,0 +1,179 @@
+@page "/agente/registrar-multa"
+@using Microsoft.EntityFrameworkCore
+@inject MultasDbContext DbContext
+@layout AgenteLayout
+@rendermode InteractiveServer
+
+<PageTitle>Registrar Multa</PageTitle>
+
+<div class="container mt-5">
+    <div class="card shadow-lg">
+        <div class="card-header bg-primary text-white">
+            <h3 class="mb-0">
+                <i class="fas fa-file-alt me-2"></i>Registrar Multa
+            </h3>
+        </div>
+        <div class="card-body">
+
+            <!-- Alerta de éxito -->
+            @if (!string.IsNullOrEmpty(mensajeExito))
+            {
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>¡Éxito!</strong> @mensajeExito
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            }
+
+            <EditForm Model="@multa" OnValidSubmit="RegistrarNuevaMulta" class="needs-validation" novalidate>
+                <DataAnnotationsValidator />
+                <ValidationSummary class="alert alert-danger" />
+
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label class="form-label">Cédula</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fas fa-id-card"></i></span>
+                            <InputText class="form-control" @bind-Value="multa.CedulaCiudadano" placeholder="Ingrese la cédula" required />
+                            <div class="invalid-feedback">La cédula es obligatoria</div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label">Nombre</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fas fa-user"></i></span>
+                            <InputText class="form-control" @bind-Value="multa.NombreCiudadano" placeholder="Nombre del ciudadano" required />
+                            <div class="invalid-feedback">El nombre es obligatorio</div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label">Concepto de la Multa</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fas fa-clipboard-list"></i></span>
+                            <InputSelect class="form-select" @bind-Value="multa.ConceptoId" required>
+                                <option value="">Seleccione un concepto</option>
+                                @foreach (var concepto in conceptos)
+                                {
+                                    <option value="@concepto.Id">@concepto.Nombre</option>
+                                }
+                            </InputSelect>
+                            <div class="invalid-feedback">Debe seleccionar un concepto</div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label">Agente</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fas fa-user-shield"></i></span>
+                            <InputSelect class="form-select" @bind-Value="multa.AgenteId" required>
+                                <option value="">Seleccione un agente</option>
+                                @foreach (var agente in agentes)
+                                {
+                                    <option value="@agente.Id">@agente.Nombre</option>
+                                }
+                            </InputSelect>
+                            <div class="invalid-feedback">Debe seleccionar un agente</div>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <label class="form-label">Descripción</label>
+                        <InputTextArea class="form-control" @bind-Value="multa.Descripcion" placeholder="Detalles adicionales de la multa" rows="3" />
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label">Latitud</label>
+                        <InputNumber class="form-control" @bind-Value="multa.Latitud" placeholder="Coordenada de latitud" />
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label">Longitud</label>
+                        <InputNumber class="form-control" @bind-Value="multa.Longitud" placeholder="Coordenada de longitud" />
+                    </div>
+
+                    <div class="col-12">
+                        <label class="form-label">Foto de Evidencia</label>
+                        <InputFile class="form-control" OnChange="HandleFileSelected" />
+                        <div class="form-text text-muted">Tamaño máximo: 5MB</div>
+                    </div>
+
+                    <div class="col-12 mt-4">
+                        <button type="submit" class="btn btn-primary w-100">
+                            <i class="fas fa-save me-2"></i>Registrar Multa
+                        </button>
+                    </div>
+                </div>
+            </EditForm>
+        </div>
+    </div>
+</div>
+
+@code {
+    private Multa multa = new Multa();
+    private List<ConceptoMulta> conceptos = new List<ConceptoMulta>();
+    private List<Usuario> agentes = new List<Usuario>();
+    private string mensajeExito; // Variable para mostrar el mensaje de éxito
+
+    // Cargar los conceptos y los agentes disponibles
+    protected override async Task OnInitializedAsync()
+    {
+        conceptos = await DbContext.ConceptosMultas.ToListAsync();
+        agentes = await DbContext.Usuarios.Where(u => u.Rol == "Agente").ToListAsync(); // Solo Agentes
+    }
+
+    // Registrar la nueva multa
+    private async Task RegistrarNuevaMulta() 
+    {
+        // Verificar que el Agente haya sido seleccionado manualmente
+        if (multa.AgenteId > 0)
+        {
+            // Registrar la multa
+            DbContext.Multas.Add(multa);
+            await DbContext.SaveChangesAsync();
+
+            // Mostrar mensaje de éxito
+            mensajeExito = "La multa ha sido registrada correctamente.";
+            
+            // Limpiar formulario
+            multa = new Multa();
+
+            // Ocultar el mensaje después de 5 segundos
+            await Task.Delay(5000);
+            mensajeExito = string.Empty;
+        }
+        else
+        {
+            Console.WriteLine("Debe seleccionar un agente.");
+        }
+    }
+
+    // Manejar la foto seleccionada
+    private void HandleFileSelected(InputFileChangeEventArgs e)
+    {
+        // Lógica para manejar la foto seleccionada
+        var file = e.File;
+        Console.WriteLine($"Archivo seleccionado: {file.Name}");
+    }
+}
+
+<style>
+    .card {
+        border-radius: 15px;
+        overflow: hidden;
+    }
+
+    .card-header {
+        display: flex;
+        align-items: center;
+        padding: 1rem;
+    }
+
+    .input-group-text {
+        background-color: #f8f9fa;
+    }
+
+    .alert {
+        margin-bottom: 1rem;
+    }
+</style>

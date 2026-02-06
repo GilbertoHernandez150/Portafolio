@@ -1,0 +1,30 @@
+@inject NavigationManager Navigation
+@rendermode InteractiveServer
+
+
+ <button class="logout-btn" @onclick="Regresar">Regresar</button>
+
+ @code {
+    private void Regresar()
+    {
+        Navigation.NavigateTo("/inicio");
+    }
+}
+
+<style>
+    .logout-btn {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    width: 100%;
+    font-size: 1.1rem;
+}
+
+.logout-btn:hover {
+    background-color: #c0392b;
+}
+</style>

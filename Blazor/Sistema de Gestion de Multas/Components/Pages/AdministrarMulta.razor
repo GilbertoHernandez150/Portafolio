@@ -1,0 +1,143 @@
+@page "/administrativo/listado-multas"
+@using Microsoft.EntityFrameworkCore
+@inject NavigationManager Navigation
+@inject MultasDbContext DbContext
+@layout AdminLayout
+@rendermode InteractiveServer
+
+<div class="multas-container">
+    <div class="header">
+        <h1 class="page-title">Gestión de Multas</h1>
+        <div class="search-bar">
+            <input type="text" class="form-control" placeholder="Buscar por nombre o cédula..." @bind="filtroBusqueda" />
+            <button class="btn btn-primary" @onclick="BuscarMultas">
+                <i class="fas fa-search"></i> Buscar
+            </button>
+        </div>
+    </div>
+
+    @if (multasFiltradas == null)
+    {
+        <div class="loading-spinner">
+            <p>Cargando multas...</p>
+        </div>
+    }
+    else if (!multasFiltradas.Any())
+    {
+        <div class="no-data">
+            <p>No se encontraron multas.</p>
+        </div>
+    }
+    else
+    {
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead class="table-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>Ciudadano</th>
+                        <th>Cédula</th>
+                        <th>Concepto</th>
+                        <th>Fecha</th>
+                        <th>Estado</th>
+                        <th>Agente</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var multa in multasFiltradas)
+                    {
+                        <tr>
+                            <td>@multa.Id</td>
+                            <td>@multa.NombreCiudadano</td>
+                            <td>@multa.CedulaCiudadano</td>
+                            <td>@multa.Concepto?.Nombre</td>
+                            <td>@multa.FechaRegistro.ToString("dd/MM/yyyy")</td>
+                            <td>
+                                <span class="badge @GetEstadoClass(multa.Estado)">@multa.Estado</span>
+                            </td>
+                            <td>@multa.AgenteId</td>
+                            <td>
+                                <button class="btn btn-sm btn-success" @onclick='() => CambiarEstadoMulta(multa.Id, "Pagada")'>
+                                    <i class="fas fa-check"></i> Pagar
+                                </button>
+                                <button class="btn btn-sm btn-warning" @onclick='() => CambiarEstadoMulta(multa.Id, "Perdona")'>
+                                    <i class="fas fa-times"></i> Perdonar
+                                </button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</div>
+
+<style>
+    .multas-container {
+        background-color: #f8f9fa;
+        padding: 2rem;
+        border-radius: 10px;
+    }
+
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+    }
+
+    .search-bar {
+        display: flex;
+        gap: 1rem;
+        width: 40%;
+    }
+</style>
+
+@code {
+    private List<Multa> multas;
+    private List<Multa> multasFiltradas;
+    private string filtroBusqueda = string.Empty;
+
+    protected override async Task OnInitializedAsync()
+    {
+        multas = await DbContext.Multas.Include(m => m.Concepto).ToListAsync();
+        multasFiltradas = multas; // Inicialmente mostramos todas
+    }
+
+    private void BuscarMultas()
+    {
+        if (string.IsNullOrWhiteSpace(filtroBusqueda))
+        {
+            multasFiltradas = multas;
+        }
+        else
+        {
+            multasFiltradas = multas.Where(m =>
+                m.NombreCiudadano.Contains(filtroBusqueda, StringComparison.OrdinalIgnoreCase) ||
+                m.CedulaCiudadano.Contains(filtroBusqueda)).ToList();
+        }
+    }
+
+    private async Task CambiarEstadoMulta(int id, string nuevoEstado)
+    {
+        var multa = await DbContext.Multas.FindAsync(id);
+        if (multa != null)
+        {
+            multa.Estado = nuevoEstado;
+            await DbContext.SaveChangesAsync();
+            BuscarMultas(); // Refrescar la lista después del cambio
+        }
+    }
+
+    private string GetEstadoClass(string estado)
+    {
+        return estado switch
+        {
+            "Activa" => "bg-info",
+            "Pagada" => "bg-success",
+            "Perdona" => "bg-warning",
+            _ => "bg-secondary"
+        };
+    }
+}

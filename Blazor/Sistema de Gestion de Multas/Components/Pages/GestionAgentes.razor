@@ -1,0 +1,74 @@
+@page "/oficina-central/gestionar-agentes"
+@inject NavigationManager NavigationManager
+@inject UsuarioService UsuarioService
+@inject MultasDbContext DbContext
+@layout CentralLayout
+@rendermode InteractiveServer
+
+<h3>Gestión de Agentes</h3>
+
+@if (usuarios == null)
+{
+    <p>Cargando...</p>
+}
+else if (usuarios.Count == 0)
+{
+    <p>No hay usuarios disponibles.</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Cédula</th>
+                <th>Nombre</th>
+                <th>Rol</th>
+                <th>Activo</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var usuario in usuarios)
+            {
+                <tr>
+                    <td>@usuario.Cedula</td>
+                    <td>@usuario.Nombre</td>
+                    <td>@usuario.Rol</td>
+                    <td>@(usuario.Activo ? "Sí" : "No")</td>
+                    <td>
+                        <button class="btn btn-primary" @onclick="() => EditarUsuario(usuario.Id)">Editar</button>
+                        <button class="btn btn-danger" @onclick="() => DesactivarUsuario(usuario.Id)">Desactivar</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+<button class="btn btn-success" @onclick="CrearUsuario">Agregar Agente</button>
+
+@code {
+    private List<Usuario> usuarios;
+
+    protected override async Task OnInitializedAsync()
+    {
+        usuarios = await UsuarioService.ObtenerUsuariosAsync();
+    }
+
+    private void CrearUsuario()
+    {
+        // Navegar a la página para crear un nuevo usuario
+        NavigationManager.NavigateTo("/oficina-central/gestionar-agentes/crear-agente");
+    }
+
+    private void EditarUsuario(int id)
+    {
+        // Navegar a la página para editar un usuario, pasando el ID
+        NavigationManager.NavigateTo($"/oficina-central/gestionar-agentes/crear-agente/{id}");
+    }
+
+    private async Task DesactivarUsuario(int id)
+    {
+        await UsuarioService.DesactivarUsuarioAsync(id);
+        usuarios = await UsuarioService.ObtenerUsuariosAsync(); // Actualizamos la lista de usuarios
+    }
+}

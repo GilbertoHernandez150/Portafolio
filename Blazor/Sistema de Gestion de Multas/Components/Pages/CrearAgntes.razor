@@ -1,0 +1,100 @@
+@page "/oficina-central/gestionar-agentes/crear-agente/{Id:int?}"
+@inject UsuarioService UsuarioService
+@inject NavigationManager NavigationManager
+@inject MultasDbContext DbContext
+@layout CentralLayout
+@rendermode InteractiveServer
+
+<h3 class="mb-4">@((usuario.Id == 0) ? "Crear Usuario" : "Editar Usuario")</h3>
+
+<EditForm Model="@usuario" OnValidSubmit="GuardarUsuario">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="form-group mb-3">
+        <label for="Cedula" class="form-label">Cédula</label>
+        <InputText id="Cedula" class="form-control" @bind-Value="usuario.Cedula" />
+    </div>
+    
+    <div class="form-group mb-3">
+        <label for="Nombre" class="form-label">Nombre</label>
+        <InputText id="Nombre" class="form-control" @bind-Value="usuario.Nombre" />
+    </div>
+
+    <div class="form-group mb-3">
+        <label for="Clave" class="form-label">Clave</label>
+        <InputText id="Clave" class="form-control" @bind-Value="usuario.Clave" type="password" />
+    </div>
+    
+    <div class="form-group mb-3">
+        <label for="Rol" class="form-label">Rol</label>
+        <InputText id="Rol" class="form-control" @bind-Value="usuario.Rol" />
+    </div>
+
+    <div class="form-group mb-3">
+        <label for="Activo" class="form-label">Activo</label>
+        <InputCheckbox id="Activo" class="form-check-input" @bind-Value="usuario.Activo" />
+    </div>
+
+    <div class="d-flex justify-content-between">
+        <button type="submit" class="btn btn-success">
+            @((usuario.Id == 0) ? "Crear" : "Guardar")
+        </button>
+        <button type="button" class="btn btn-danger" @onclick="Cancelar">Cancelar</button>
+    </div>
+</EditForm>
+
+@code {
+    [Parameter] public int? Id { get; set; }
+    private Usuario usuario = new Usuario();
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (Id.HasValue && Id.Value != 0)
+        {
+            // Si el ID tiene valor, obtener el usuario para editar
+            usuario = await UsuarioService.ObtenerUsuarioPorIdAsync(Id.Value);
+        }
+        else
+        {
+            // Si no se tiene el ID (es creación), inicializar un nuevo usuario
+            usuario = new Usuario { Id = 0 }; // Asegúrate de inicializar el ID a 0 para "Crear"
+        }
+    }
+
+   private async Task GuardarUsuario()
+    {
+        try
+        {
+            // Validar que la contraseña no sea null
+            if (string.IsNullOrEmpty(usuario.Clave))
+            {
+                throw new Exception("La clave es obligatoria.");
+            }
+
+            if (usuario.Id == 0)
+            {
+                // Si el Id es 0, estamos creando un nuevo usuario
+                await UsuarioService.CrearUsuarioAsync(usuario);
+            }
+            else
+            {
+                // Si el Id tiene valor, estamos editando el usuario existente
+                await UsuarioService.EditarUsuarioAsync(usuario);
+            }
+
+            // Redirigir a la página de gestión de agentes
+            NavigationManager.NavigateTo("/oficina-central/gestionar-agentes");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error: {ex.Message}");
+            // Puedes mostrar un mensaje al usuario o manejar el error de otra forma
+        }
+    }
+    private void Cancelar()
+    {
+        // Redirigir a la página de gestión de agentes sin hacer cambios
+        NavigationManager.NavigateTo("/oficina-central/gestionar-agentes");
+    }
+}

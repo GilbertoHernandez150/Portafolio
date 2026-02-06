@@ -1,0 +1,47 @@
+@inherits LayoutComponentBase
+
+<div class="container-fluid">
+    <!-- Barra lateral (Sidebar) -->
+    <div class="row">
+        <div class="col-md-3 col-lg-2 p-0 bg-dark text-white" style="height: 100vh;">
+            <div class="d-flex flex-column align-items-start p-3">
+                <h2 class="text-center text-white mb-4">Admin</h2>
+
+                <ul class="nav flex-column w-100">
+                    <li class="nav-item">
+                        <NavLink class="nav-link text-white" href="/administrativo">
+                            <i class="bi bi-house-door"></i> Inicio
+                        </NavLink>
+                    </li>
+                    <li class="nav-item">
+                        <NavLink class="nav-link text-white" href="/administrativo/gestionar-agentes">
+                            <i class="bi bi-person-fill"></i> Gestionar Agentes
+                        </NavLink>
+                    </li>
+                    <li class="nav-item">
+                        <NavLink class="nav-link text-white" href="/administrativo/listado-multas">
+                            <i class="bi bi-file-earmark-post"></i> Gestionar Multas
+                        </NavLink>
+                    </li>
+                    <li class="nav-item">
+                        <NavLink class="nav-link text-white" href="/administrativo/gestionar-conceptos">
+                            <i class="bi bi-journal-check"></i> Gestionar Conceptos de Multas
+                        </NavLink>
+                    </li>
+                    <li class="nav-item">
+                        <NavLink class="nav-link text-white" href="/">
+                            <i class="bi bi-gear"></i> Salir
+                        </NavLink>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Contenido Principal -->
+        <div class="col-md-9 col-lg-10 p-4">
+            @Body
+        </div>
+    </div>
+</div>
+
+

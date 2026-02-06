@@ -1,0 +1,62 @@
+@inject MultasDbContext DbContext
+@rendermode InteractiveServer
+@inject IJSRuntime JSX
+
+@code {
+    [Parameter]
+    public List<Multa> Multas { get; set; } = new List<Multa>();
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await JSX.InvokeVoidAsync("cargarMapa");
+
+            var paramx = Newtonsoft.Json.JsonConvert.SerializeObject(Multas);
+            await JSX.InvokeVoidAsync("cargarMarcadores", paramx);
+        }
+    }
+}
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+<style>
+    .leaflet-container {
+    width: 100%;
+    height: 400px; /* Ajusta esta altura según tus necesidades */
+    max-width: 100%;
+}
+    #map {
+        width: 100%;
+        height: 400px;
+    }
+</style>
+
+<div id="map"></div>
+
+<script>
+    var map = null;
+
+    cargarMapa = function() {
+        map = L.map('map').setView([18.88632040635381, -70.18598562430739], 8);
+
+        const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        }).addTo(map);
+    };
+
+    function cargarMarcadores(multas) {
+        multas = JSON.parse(multas);
+        for (var x = 0; x < multas.length; x++) {
+            var multa = multas[x];
+            L.marker([multa.Latitud, multa.Longitud]).addTo(map).bindPopup(`
+                <b>Cedula:</b> ${multa.CedulaCiudadano} <br>
+                <b>Nombre:</b> ${multa.NombreCiudadano} <br>
+                <b>Concepto:</b> ${multa.ConceptoId} <br>
+                <b>Fecha de registro:</b> ${multa.FechaRegistro} <br>
+            `);
+        }
+    }
+</script>

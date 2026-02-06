@@ -1,0 +1,50 @@
+@page "/agente/comision-mes"
+@inject MultasDbContext DbContext
+@layout AgenteLayout
+
+<h2>Comisión por Mes 💰</h2>
+
+@if (totalComision.HasValue)
+{
+    <div class="comision-container">
+        <div class="comision-total">
+            <h3>Total de Ingresos:</h3>
+            <span class="comision-amount">@totalComision.Value.ToString("C")</span>
+        </div>
+
+        <div class="ultimos-aportes">
+            <h4>Últimos 5 Aportes</h4>
+            <ul class="aportes-list">
+                @foreach (var aporte in ultimosAportes)
+                {
+                    <li>
+                        <span>@aporte.MultaId</span> - 
+                        <span>Monto: @aporte.Multa?.Concepto?.Monto.ToString("C") ?? "No disponible"</span> - 
+                        <span>Fecha: @aporte.Mes/@aporte.Año</span>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+}
+else
+{
+    <p>Cargando información de comisiones...</p>
+}
+
+@code {
+    private double? totalComision;
+    private List<Comision> ultimosAportes;
+
+    protected override async Task OnInitializedAsync()
+    {
+        int agenteId = 2;
+        int mesActual = DateTime.Now.Month;
+        int añoActual = DateTime.Now.Year;
+
+        // Obtener las comisiones por agente y mes
+        var resultado = await DbContext.GetComisionesPorAgenteMes(agenteId, mesActual, añoActual);
+        totalComision = resultado.TotalComision;
+        ultimosAportes = resultado.UltimosAportes;
+    }
+}
