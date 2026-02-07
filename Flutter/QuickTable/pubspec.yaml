@@ -1,0 +1,57 @@
+name: quicktable
+description: "A new Flutter project."
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.9.2
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  flutter_localizations:           # ← AÑADIDO
+    sdk: flutter
+
+  pdf: ^3.10.4
+  printing: ^5.10.4
+
+  intl: ^0.20.2
+
+  url_launcher: ^6.3.0
+
+  firebase_core: ^3.0.0
+  cloud_firestore: ^5.0.0
+  firebase_auth: ^5.0.0
+
+  cupertino_icons: ^1.0.8
+  google_maps_flutter: ^2.14.0
+  flutter_launcher_icons: ^0.14.4
+  flutter_native_splash: ^2.4.0 
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^5.0.0
+
+flutter:
+  uses-material-design: true
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/icon.png"
+  remove_alpha: true
+
+flutter_native_splash:
+  color: "#FFFFFF"        # Fondo blanco (lo puedo cambiar si quieres)
+  image: assets/icon.png  # Tu icono grande
+  android: true
+  ios: true
+
+  android_12:
+    image: assets/icon.png
+    icon_background_color: "#FFFFFF"
