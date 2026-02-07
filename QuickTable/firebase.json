@@ -1,0 +1,36 @@
+{
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "quicktable-424dd",
+          "appId": "1:116664638248:android:2f1ca4a3901ead8e984e1d",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "quicktable-424dd",
+          "configurations": {
+            "android": "1:116664638248:android:2f1ca4a3901ead8e984e1d",
+            "ios": "1:116664638248:ios:b92320d0656aef12984e1d",
+            "web": "1:116664638248:web:2aece19fd00907a1984e1d"
+          }
+        }
+      }
+    }
+  },
+  "functions": [
+    {
+      "source": "functions",
+      "codebase": "default",
+      "ignore": [
+        "node_modules",
+        ".git",
+        "firebase-debug.log",
+        "firebase-debug.*.log",
+        "*.local"
+      ]
+    }
+  ]
+}
