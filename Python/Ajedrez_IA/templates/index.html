@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajedrez IA - Juego Profesional</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+
+        <!-- Header -->
+        <header class="header">
+            <h1 class="title">Ajedrez Profesional</h1>
+            <p class="subtitle">Desafía a la Inteligencia Artificial</p>
+        </header>
+
+        <!-- Pantalla de bienvenida -->
+        <div id="welcome-screen" class="welcome-screen">
+            <div class="welcome-content">
+                <h2>¡Bienvenido al Ajedrez IA!</h2>
+                <p class="welcome-text">
+                    Enfréntate a nuestra inteligencia artificial en una partida de ajedrez.
+                    Selecciona tu nivel de dificultad y comienza a jugar.
+                </p>
+
+                <div class="difficulty-selector">
+                    <h3>Selecciona la Dificultad:</h3>
+                    <div class="difficulty-buttons">
+                        <button type="button" class="difficulty-btn" data-difficulty="beginner">
+                            <span class="difficulty-name">Principiante</span>
+                            <span class="difficulty-desc">Ideal para empezar</span>
+                        </button>
+                        <button type="button" class="difficulty-btn active" data-difficulty="intermediate">
+                            <span class="difficulty-name">Intermedio</span>
+                            <span class="difficulty-desc">Un desafío equilibrado</span>
+                        </button>
+                        <button type="button" class="difficulty-btn" data-difficulty="advanced">
+                            <span class="difficulty-name">Avanzado</span>
+                            <span class="difficulty-desc">Para jugadores expertos</span>
+                        </button>
+                        <button type="button" class="difficulty-btn" data-difficulty="professional">
+                            <span class="difficulty-name">Profesional</span>
+                            <span class="difficulty-desc">Máxima dificultad</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- IMPORTANTE: type="button" -->
+                <button id="start-game-btn" type="button" class="main-btn start-btn">
+                    Iniciar Juego
+                </button>
+            </div>
+        </div>
+
+        <!-- Pantalla de juego -->
+        <div id="game-screen" class="game-screen hidden">
+
+            <!-- Panel de información -->
+            <div class="info-panel">
+                <div class="game-info">
+                    <div class="player-info">
+                        <div class="player white-player">
+                            <span class="player-icon">♔</span>
+                            <span class="player-name">Tú (Blancas)</span>
+                        </div>
+
+                        <div class="turn-indicator" id="turn-indicator">
+                            <span id="turn-text">Tu turno</span>
+                        </div>
+
+                        <div class="player black-player">
+                            <span class="player-icon">♚</span>
+                            <span class="player-name">IA (Negras)</span>
+                        </div>
+                    </div>
+
+                    <div class="difficulty-display">
+                        Dificultad: <span id="current-difficulty">Intermedio</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tablero -->
+            <div class="board-container">
+                <!-- ESTE ID ES CRÍTICO -->
+                <div id="chess-board" class="chess-board"></div>
+            </div>
+
+            <!-- Panel de controles -->
+            <div class="controls-panel">
+                <button id="restart-btn" type="button" class="main-btn restart-btn">
+                    Reiniciar Partida
+                </button>
+                <button id="new-game-btn" type="button" class="main-btn new-game-btn">
+                    Nueva Configuración
+                </button>
+            </div>
+
+            <!-- Mensajes de estado -->
+            <div id="status-message" class="status-message hidden">
+                <div class="status-content">
+                    <p id="status-text"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/game.js') }}"></script>
+</body>
+</html>
