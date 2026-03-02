@@ -1,4 +1,6 @@
 # Chatbot ITLA
+> Nota: Imagenes del software en la documentacion.
+
 ## Descripción General
 Este proyecto consiste en el desarrollo de un chatbot conversacional utilizando únicamente el lenguaje Python. El chatbot puede proveer información referente al Instituto Tecnológico de las Américas (ITLA) con el fin de conocer más acerca de la institución.
 
