@@ -64,10 +64,5 @@ El sistema se compone de:
 
 ---
 
-## Ejecución del Proyecto  
 
-### 1. Clonar el repositorio  
-```bash
-git clone https://github.com/GilbertoHernandez150/Proyecto-Final-Paralela
-cd Proyecto-Final-Paralela
 
