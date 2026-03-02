@@ -1,4 +1,5 @@
 # Análisis Paralelo de Logs del Sistema a través de Conexión Remota  
+> Nota: Imagenes del software en la documentacion que se encuentra en la carpeta docs.
 
 ## Descripción General  
 Este proyecto consiste en el desarrollo de un sistema que permite conectarse a dispositivos remotos (Windows), ejecutar comandos o scripts para generar archivos de logs del sistema, obtener dichos archivos y analizarlos mediante técnicas de procesamiento paralelo.  
@@ -69,3 +70,4 @@ El sistema se compone de:
 ```bash
 git clone https://github.com/GilbertoHernandez150/Proyecto-Final-Paralela
 cd Proyecto-Final-Paralela
+
