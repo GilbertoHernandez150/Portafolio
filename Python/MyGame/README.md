@@ -1,4 +1,6 @@
 # MyGame - Videojuego 2D de Acción y Supervivencia
+> Nota: Imagenes del software en la documentacion.
+
 ## Descripción General
 Este proyecto consiste en el desarrollo de un videojuego 2D tipo acción y supervivencia, implementado utilizando el lenguaje de programación Python junto con la librería Pygame. El objetivo principal del juego es poner a prueba los reflejos, la coordinación y la capacidad de reacción del jugador frente a enemigos que aparecen progresivamente en pantalla.
 
