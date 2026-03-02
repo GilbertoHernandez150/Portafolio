@@ -1,4 +1,5 @@
 # Music Player App - Sistema Web de Streaming Musical
+> Nota: Imagenes del software en la documentacion que se encuentra en la carpeta docs.
 
 ## Descripción General
 Este proyecto consiste en el desarrollo de un sistema web de streaming musical que permite reproducir contenido multimedia mediante una interfaz interactiva accesible desde el navegador.
@@ -159,4 +160,5 @@ El sistema puede ampliarse para incluir: sistema de autenticación de usuarios, 
 **Recomendaciones:**
 - Ejecutar el sistema dentro de un entorno virtual.
 - No modificar directamente archivos multimedia en producción.
+
 - Mantener copias de seguridad de la base de datos.
