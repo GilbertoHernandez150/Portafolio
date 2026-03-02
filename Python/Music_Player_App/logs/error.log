@@ -1,0 +1,22 @@
+2026-02-18 12:13:12 - app.api.routes - [31mERROR[0m - Error al obtener tendencias: 'YouTubeSearchService' object has no attribute 'get_trending_music'
+2026-02-18 12:13:12 - app.api.routes - [0m[31mERROR[0m[0m - Error al obtener tendencias: 'YouTubeSearchService' object has no attribute 'get_trending_music'
+2026-02-18 13:12:48 - app.api.routes - [31mERROR[0m - Error al obtener tendencias: YouTubeSearchService.get_trending_music() got an unexpected keyword argument 'max_results'
+2026-02-18 13:12:48 - app.api.routes - [0m[31mERROR[0m[0m - Error al obtener tendencias: YouTubeSearchService.get_trending_music() got an unexpected keyword argument 'max_results'
+2026-02-18 13:13:51 - app.api.routes - [31mERROR[0m - Error al obtener tendencias: YouTubeSearchService.get_trending_music() got an unexpected keyword argument 'max_results'
+2026-02-18 13:13:51 - app.api.routes - [0m[31mERROR[0m[0m - Error al obtener tendencias: YouTubeSearchService.get_trending_music() got an unexpected keyword argument 'max_results'
+2026-02-18 13:28:47 - app.api.routes - [31mERROR[0m - Error al obtener tendencias: YouTubeSearchService.get_trending_music() got an unexpected keyword argument 'max_results'
+2026-02-18 13:28:47 - app.api.routes - [0m[31mERROR[0m[0m - Error al obtener tendencias: YouTubeSearchService.get_trending_music() got an unexpected keyword argument 'max_results'
+2026-02-18 22:06:14 - app.api.routes - [31mERROR[0m - Error al obtener tendencias: YouTubeSearchService.get_trending_music() got an unexpected keyword argument 'max_results'
+2026-02-18 22:06:14 - app.api.routes - [0m[31mERROR[0m[0m - Error al obtener tendencias: YouTubeSearchService.get_trending_music() got an unexpected keyword argument 'max_results'
+2026-02-18 22:07:35 - app.api.routes - [31mERROR[0m - Error al obtener tendencias: YouTubeSearchService.get_trending_music() got an unexpected keyword argument 'max_results'
+2026-02-18 22:07:35 - app.api.routes - [0m[31mERROR[0m[0m - Error al obtener tendencias: YouTubeSearchService.get_trending_music() got an unexpected keyword argument 'max_results'
+2026-02-18 22:33:49 - app.api.routes - [31mERROR[0m - Error al obtener tendencias: YouTubeSearchService.get_trending_music() got an unexpected keyword argument 'max_results'
+2026-02-18 22:33:49 - app.api.routes - [0m[31mERROR[0m[0m - Error al obtener tendencias: YouTubeSearchService.get_trending_music() got an unexpected keyword argument 'max_results'
+2026-02-19 00:11:42 - app.api.routes - [31mERROR[0m - Error al obtener tendencias: YouTubeSearchService.get_trending_music() got an unexpected keyword argument 'max_results'
+2026-02-19 00:11:42 - app.api.routes - [0m[31mERROR[0m[0m - Error al obtener tendencias: YouTubeSearchService.get_trending_music() got an unexpected keyword argument 'max_results'
+2026-02-19 00:15:09 - app.api.routes - [31mERROR[0m - Error al obtener tendencias: YouTubeSearchService.get_trending_music() got an unexpected keyword argument 'max_results'
+2026-02-19 00:15:09 - app.api.routes - [0m[31mERROR[0m[0m - Error al obtener tendencias: YouTubeSearchService.get_trending_music() got an unexpected keyword argument 'max_results'
+2026-02-24 14:30:35 - app.services.video_stream - [31mERROR[0m - Error al extraer el stream de Kqvga3VJGyM: [0;31mERROR:[0m [youtube] Kqvga3VJGyM: Requested format is not available. Use --list-formats for a list of available formats
+2026-02-24 14:30:35 - app.services.video_stream - [0m[31mERROR[0m[0m - Error al extraer el stream de Kqvga3VJGyM: [0;31mERROR:[0m [youtube] Kqvga3VJGyM: Requested format is not available. Use --list-formats for a list of available formats
+2026-02-24 14:32:39 - app.services.video_stream - [31mERROR[0m - Error al extraer el stream de Kqvga3VJGyM: [0;31mERROR:[0m [youtube] Kqvga3VJGyM: Requested format is not available. Use --list-formats for a list of available formats
+2026-02-24 14:32:39 - app.services.video_stream - [0m[31mERROR[0m[0m - Error al extraer el stream de Kqvga3VJGyM: [0;31mERROR:[0m [youtube] Kqvga3VJGyM: Requested format is not available. Use --list-formats for a list of available formats
