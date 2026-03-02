@@ -1,4 +1,6 @@
 # Ajedrez con Inteligencia Artificial
+> Nota: Imagenes del software en la documentacion que se encuentra en la carpeta docs.
+
 ## Descripción General
 Este proyecto consiste en el desarrollo de un sistema de ajedrez profesional con Inteligencia Artificial accesible desde navegador web. El usuario juega con las piezas blancas contra una IA que controla las negras, con distintos niveles de dificultad, incluyendo un modo profesional con comportamiento estratégico avanzado.
 
