@@ -163,3 +163,5 @@ El sistema puede ampliarse para incluir: sistema de autenticación de usuarios, 
 
 - Mantener copias de seguridad de la base de datos.
 
+---
+**Desarrollado por: Gilberto Hernández**
